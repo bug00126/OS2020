@@ -1,6 +1,8 @@
 /code/machine/
 /code/lib/
 /code/network/
+/code/build.linux/
+/code/test/
 /c++example/
 /coff2noff/
 COPYRIGHT

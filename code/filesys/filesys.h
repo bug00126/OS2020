@@ -52,9 +52,9 @@ class FileSystem {
     bool Create(char *name) {
 	int fileDescriptor = OpenForWrite(name);
 
-	if (fileDescriptor == -1) return FALSE;
-	Close(fileDescriptor); 
-	return TRUE; 
+        if (fileDescriptor == -1) return FALSE;
+		Close(fileDescriptor); 
+		return TRUE; 
     }
 //The OpenFile function is used for open user program  [userprog/addrspace.cc]
     OpenFile* Open(char *name) {
@@ -65,15 +65,34 @@ class FileSystem {
 
   
 //  The OpenAFile function is used for kernel open system call
-/*  OpenFileId OpenAFile(char *name) {
+    OpenFileId OpenAFile(char *name) {
+	    OpenFile* target = Open(name);
+        if (target == NULL) return -1;
+        for (int i=0; i<20; i++) {
+            if (OpenFileTable[i] == NULL) {
+                OpenFileTable[i] = target;
+                return i+1;
+            }
+        }
     }
     int WriteFile(char *buffer, int size, OpenFileId id){
+        OpenFile* target = OpenFileTable[id-1];
+        if (target == NULL) return -1;
+        return target->Write(buffer, size);
     }
     int ReadFile(char *buffer, int size, OpenFileId id){
+        OpenFile* target = OpenFileTable[id-1];
+        if (target == NULL) return -1;
+        return target->Read(buffer, size);
     }
     int CloseFile(OpenFileId id){
+        OpenFile* target = OpenFileTable[id-1];
+        if (target == NULL) return -1;
+        delete target;
+        OpenFileTable[id-1] = NULL;
+        return 1;
     }
-*/
+
 
 
     bool Remove(char *name) { return Unlink(name) == 0; }
