@@ -1,7 +1,7 @@
 /code/machine/
 /code/lib/
 /code/network/
-/code/build.linux/
+/code/build.linux/*.o
 /code/test/
 /c++example/
 /coff2noff/

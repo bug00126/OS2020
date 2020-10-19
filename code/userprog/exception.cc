@@ -102,6 +102,9 @@ ExceptionHandler(ExceptionType which)
 		return;
 		ASSERTNOTREACHED();
 	    break;
+
+        // Implement function
+        // MP1
 	    case SC_Open:
 	        val = kernel->machine->ReadRegister(4);
     		{

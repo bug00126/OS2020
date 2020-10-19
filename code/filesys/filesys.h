@@ -74,6 +74,7 @@ class FileSystem {
                 return i+1;
             }
         }
+        return -1;
     }
     int WriteFile(char *buffer, int size, OpenFileId id){
         OpenFile* target = OpenFileTable[id-1];
